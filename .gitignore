@@ -1,0 +1,30 @@
+# Binaries
+/bin/
+/tmp/
+*.exe
+*.dll
+*.so
+*.dylib
+/api
+/article-service
+
+# Test / coverage
+*.test
+*.out
+coverage.html
+coverage.out
+
+# Environment (keep .env.example)
+.env
+.env.local
+.env.*.local
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Vendor (we use modules)
+/vendor/
