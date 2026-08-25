@@ -58,7 +58,7 @@ func TestArticleHTTP_CRUDHappyPath(t *testing.T) {
 	svc := service.NewArticleService(repo)
 	h := handler.NewArticleHandler(svc, logger)
 	health := handler.NewHealthHandler(db)
-	router := handler.NewRouter(h, health, logger)
+	router := handler.NewRouter(h, health, logger, []string{"http://localhost:5173"})
 
 	content := strings.Repeat("integration content ", 20)
 	require.GreaterOrEqual(t, len(content), 200)

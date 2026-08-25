@@ -48,7 +48,7 @@ func run(logger *slog.Logger) error {
 	articleService := service.NewArticleService(repo)
 	articleHandler := handler.NewArticleHandler(articleService, logger)
 	healthHandler := handler.NewHealthHandler(db)
-	router := handler.NewRouter(articleHandler, healthHandler, logger)
+	router := handler.NewRouter(articleHandler, healthHandler, logger, cfg.CORSAllowedOrigins)
 
 	server := &http.Server{
 		Addr:         cfg.Addr(),

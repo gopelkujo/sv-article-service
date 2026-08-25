@@ -20,7 +20,7 @@ func TestHealthz_Liveness(t *testing.T) {
 	health := handler.NewHealthHandler(nil)
 	// Article handler is unused for this route but required by NewRouter.
 	article := handler.NewArticleHandler(nil, logger)
-	router := handler.NewRouter(article, health, logger)
+	router := handler.NewRouter(article, health, logger, []string{"http://localhost:5173"})
 
 	req := httptest.NewRequest(http.MethodGet, "/healthz", nil)
 	rec := httptest.NewRecorder()

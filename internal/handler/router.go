@@ -10,10 +10,17 @@ import (
 )
 
 // NewRouter builds the chi router with middleware, health probes, and article routes.
-func NewRouter(articleHandler *ArticleHandler, healthHandler *HealthHandler, logger *slog.Logger) http.Handler {
+// corsOrigins is the allowlist used by CORS middleware (e.g. the Vercel frontend URL).
+func NewRouter(
+	articleHandler *ArticleHandler,
+	healthHandler *HealthHandler,
+	logger *slog.Logger,
+	corsOrigins []string,
+) http.Handler {
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
+	r.Use(middleware.CORS(corsOrigins))
 	r.Use(middleware.Recover(logger))
 	r.Use(middleware.Logger(logger))
 
